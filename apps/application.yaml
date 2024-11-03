@@ -10,10 +10,16 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: https://charts.longhorn.io
-    chart: longhorn
-    targetRevision: 1.7.2
+  sources:
+    - repoURL: https://charts.longhorn.io
+      chart: longhorn
+      targetRevision: 1.7.2
+      helm:
+        valueFiles:
+          - values/longhorn.yaml
+    - repoURL: https://github.com/astra-studio/xplace-infra.git
+      path: manifests/longhorn
+      targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
