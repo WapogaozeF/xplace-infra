@@ -122,9 +122,12 @@ spec:
       targetRevision: 1.16.1
       helm:
         valueFiles:
-          - values/cert-manager.yaml
+          - $values/values/cert-manager.yaml
     - repoURL: https://github.com/astra-studio/xplace-infra.git
       path: manifests/cert-manager
+      targetRevision: HEAD
+    - repoURL: https://github.com/astra-studio/xplace-infra.git
+      ref: values
       targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc

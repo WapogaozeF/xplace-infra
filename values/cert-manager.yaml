@@ -11,5 +11,3 @@ podDnsConfig:
 prometheus:
   servicemonitor:
     enabled: true
-  podmonitor:
-    enabled: true
