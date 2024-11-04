@@ -1,0 +1,146 @@
+nodeSelector: {}
+
+## Affinity for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+##
+affinity: {}
+
+## Tolerations for nodes
+tolerations: []
+
+## Additional pod labels
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+##
+podLabels: {}
+
+## Additional pod annotations
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+##
+podAnnotations: {}
+
+replicaCountEnabled: true
+replicaCount: 1
+
+revisionHistoryLimit: 10
+
+## Define Probes
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes
+livenessProbe:
+  {}
+  # initialDelaySeconds: 0
+  # periodSeconds: 10
+  # timeoutSeconds: 1
+  # successThreshold: 1
+  # failureThreshold: 3
+readinessProbe:
+  {}
+  # initialDelaySeconds: 0
+  # periodSeconds: 10
+  # timeoutSeconds: 1
+  # successThreshold: 1
+  # failureThreshold: 3
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 512Mi
+  limits:
+    cpu: 1
+    memory: 2Gi
+
+# Extra Environment Values - allows yaml definitions
+# extraEnvVars:
+#  - name: VALUE_FROM_SECRET
+#    valueFrom:
+#      secretKeyRef:
+#        name: secret_name
+#        key: secret_key
+#  - name: REGULAR_VAR
+#    value: ABC
+extraEnvVars:
+  - name: VERDACCIO_PORT
+    value: "4873"
+
+## Secret Environment Variables
+## Use this to pass sensitive key:values to the container via k8s secret
+secretEnvVars:
+  {}
+  # SECRET_ENV_VAR: secretValue
+  # corp_artifactory: foo
+  # npmjs: bar
+
+## Existing Secret
+## Existing secret containing environment variables to be passed to the container
+existingSecret: ""
+
+# Extra Init Containers - allows yaml definitions
+extraInitContainers: []
+
+configMap: |
+  storage: /verdaccio/storage/data
+
+  web:
+    title: Astra Studio
+
+  auth:
+    htpasswd:
+      file: /verdaccio/storage/htpasswd
+      max_users: 20
+
+  uplinks:
+    npmjs:
+      url: https://registry.npmjs.org/
+      agent_options:
+        keepAlive: true
+        maxSockets: 40
+        maxFreeSockets: 10
+
+  server:
+      keepAliveTimeout: 60
+
+  max_body_size: 350mb
+
+  packages:
+    '@*/*':
+      # scoped packages
+      access: $all
+      publish: $authenticated
+      proxy: npmjs
+
+    '**':
+      access: $authenticated
+      publish: $authenticated
+      proxy: npmjs
+
+  middlewares:
+    audit:
+      enabled: true
+
+  log: {type: stdout, format: pretty, level: http}
+
+persistence:
+  size: 12Gi
+
+# Secrets
+secrets:
+  # list of users and password for htpasswd plugin
+  # This this is mounted as /verdaccio/auth/htpasswd on pods
+  htpasswd:
+    - username: "test"
+      password: "test"
+  # - username: "blah"
+  #   password: "blah"
+
+# Additional manifests to deploy within the chart
+## Can be useful to deploy additional secrets, serviceMonitors, etc
+extraManifests:
+  []
+  # - apiVersion: monitoring.coreos.com/v1
+  #   kind: ServiceMonitor
+  #   metadata:
+  #     name: verdaccio
+  #   spec:
+  #     selector:
+  #       matchLabels:
+  #         app: verdaccio
+  #     endpoints:
