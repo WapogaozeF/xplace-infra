@@ -31,47 +31,44 @@ spec:
       - CreateNamespace=false
       - PrunePropagationPolicy=foreground
       - PruneLast=true
-# ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: longhorn
-#   namespace: argocd
-#   # annotations:
-#   #   argocd.argoproj.io/sync-wave: "1"
-#   # finalizers:
-#   #   - resources-finalizer.argocd.argoproj.io
-# spec:
-#   project: default
-#   sources:
-#     - repoURL: https://charts.longhorn.io
-#       chart: longhorn
-#       targetRevision: v1.7.2
-#       helm:
-#         values: |
-#           preUpgradeChecker:
-#             jobEnabled: false
-#           # metrics:
-#           #   serviceMonitor:
-#           #     enabled: true
-#         # valueFiles:
-#         #   - values/longhorn.yaml
-#     - repoURL: https://github.com/astra-studio/xplace-infra.git
-#       path: manifests/longhorn
-#       targetRevision: HEAD
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: longhorn-system
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#       allowEmpty: false
-#     syncOptions:
-#       - Validate=true
-#       - CreateNamespace=false
-#       - PrunePropagationPolicy=foreground
-#       - PruneLast=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.longhorn.io
+      chart: longhorn
+      targetRevision: v1.7.2
+      helm:
+        valueFiles:
+          - $values/values/longhorn.yaml
+    - repoURL: https://github.com/astra-studio/xplace-infra.git
+      ref: values
+      targetRevision: HEAD
+    - repoURL: https://github.com/astra-studio/xplace-infra.git
+      path: manifests/longhorn
+      targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: longhorn-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=false
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -194,49 +191,11 @@ spec:
       - CreateNamespace=false
       - PrunePropagationPolicy=foreground
       - PruneLast=true
-# ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: registry
-#   namespace: argocd
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "3"
-#   finalizers:
-#     - resources-finalizer.argocd.argoproj.io
-# spec:
-#   project: default
-#   sources:
-#     - repoURL: https://helm.goharbor.io
-#       chart: harbor
-#       targetRevision: 1.15.1
-#       helm:
-#         valueFiles:
-#           - $values/values/cert-manager.yaml
-#     - repoURL: https://github.com/astra-studio/xplace-infra.git
-#       path: manifests/cert-manager
-#       targetRevision: HEAD
-#     - repoURL: https://github.com/astra-studio/xplace-infra.git
-#       ref: values
-#       targetRevision: HEAD
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: registry
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#       allowEmpty: false
-#     syncOptions:
-#       - Validate=true
-#       - CreateNamespace=false
-#       - PrunePropagationPolicy=foreground
-#       - PruneLast=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: verdaccio
+  name: registry
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "3"
@@ -245,21 +204,21 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://charts.verdaccio.org/
-      chart: verdaccio
-      targetRevision: 4.20.0
+    - repoURL: https://helm.goharbor.io
+      chart: harbor
+      targetRevision: 1.15.1
       helm:
         valueFiles:
-          - $values/values/verdaccio.yaml
+          - $values/values/cert-manager.yaml
     - repoURL: https://github.com/astra-studio/xplace-infra.git
-      path: manifests/verdaccio
+      path: manifests/cert-manager
       targetRevision: HEAD
     - repoURL: https://github.com/astra-studio/xplace-infra.git
       ref: values
       targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: npm
+    namespace: registry
   syncPolicy:
     automated:
       prune: true
@@ -270,3 +229,41 @@ spec:
       - CreateNamespace=false
       - PrunePropagationPolicy=foreground
       - PruneLast=true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: verdaccio
+#   namespace: argocd
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "3"
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   sources:
+#     - repoURL: https://charts.verdaccio.org/
+#       chart: verdaccio
+#       targetRevision: 4.20.0
+#       helm:
+#         valueFiles:
+#           - $values/values/verdaccio.yaml
+#     - repoURL: https://github.com/astra-studio/xplace-infra.git
+#       path: manifests/verdaccio
+#       targetRevision: HEAD
+#     - repoURL: https://github.com/astra-studio/xplace-infra.git
+#       ref: values
+#       targetRevision: HEAD
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: npm
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#       allowEmpty: false
+#     syncOptions:
+#       - Validate=true
+#       - CreateNamespace=false
+#       - PrunePropagationPolicy=foreground
+#       - PruneLast=true

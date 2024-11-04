@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: postagres-internal-ca
+  namespace: registry
+spec:
+  isCA: true
+  duration: 8760h
+  renewBefore: 360h
+  commonName: "postagres-internal-ca"
+  secretName: postagres-ca-bundle
+  issuerRef:
+    name: harbor-ca-issuer
+    kind: ClusterIssuer

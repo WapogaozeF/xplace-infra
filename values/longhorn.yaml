@@ -1,3 +1,5 @@
+preUpgradeChecker:
+  jobEnabled: false
 metrics:
   serviceMonitor:
     enabled: true
