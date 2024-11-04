@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: longhorn
+  name: prometheus-crds
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
@@ -11,18 +11,89 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://charts.longhorn.io
-      chart: longhorn
-      targetRevision: 1.7.2
-      helm:
-        valueFiles:
-          - values/longhorn.yaml
+    - repoURL: https://github.com/prometheus-community/helm-charts.git
+      path: charts/kube-prometheus-stack/charts/crds/crds/
+      targetRevision: kube-prometheus-stack-65.5.1
     - repoURL: https://github.com/astra-studio/xplace-infra.git
-      path: manifests/longhorn
+      path: manifests/monitoring
       targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: longhorn-system
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Replace=true
+      - Validate=true
+      - CreateNamespace=false
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: longhorn
+#   namespace: argocd
+#   # annotations:
+#   #   argocd.argoproj.io/sync-wave: "1"
+#   # finalizers:
+#   #   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   sources:
+#     - repoURL: https://charts.longhorn.io
+#       chart: longhorn
+#       targetRevision: v1.7.2
+#       helm:
+#         values: |
+#           preUpgradeChecker:
+#             jobEnabled: false
+#           # metrics:
+#           #   serviceMonitor:
+#           #     enabled: true
+#         # valueFiles:
+#         #   - values/longhorn.yaml
+#     - repoURL: https://github.com/astra-studio/xplace-infra.git
+#       path: manifests/longhorn
+#       targetRevision: HEAD
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: longhorn-system
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#       allowEmpty: false
+#     syncOptions:
+#       - Validate=true
+#       - CreateNamespace=false
+#       - PrunePropagationPolicy=foreground
+#       - PruneLast=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.bitnami.com/bitnami
+      chart: metallb
+      targetRevision: 6.3.13
+    - repoURL: https://github.com/astra-studio/xplace-infra.git
+      path: manifests/metallb
+      targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metallb-system
   syncPolicy:
     automated:
       prune: true
@@ -33,32 +104,38 @@ spec:
       - CreateNamespace=false
       - PrunePropagationPolicy=foreground
       - PruneLast=true
-# ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: prometheus-crds
-#   namespace: argocd
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "1"
-#   finalizers:
-#     - resources-finalizer.argocd.argoproj.io
-# spec:
-#   project: default
-#   source:
-#     repoURL: https://prometheus-community.github.io/helm-charts
-#     chart: prometheus-operator-crds
-#     targetRevision: 15.0.0
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: monitoring
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#       allowEmpty: false
-#     syncOptions:
-#       - Validate=true
-#       - CreateNamespace=true
-#       - PrunePropagationPolicy=foreground
-#       - PruneLast=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.jetstack.io
+      chart: cert-manager
+      targetRevision: 1.16.1
+      helm:
+        valueFiles:
+          - values/cert-manager.yaml
+    - repoURL: https://github.com/astra-studio/xplace-infra.git
+      path: manifests/cert-manager
+      targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=false
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
