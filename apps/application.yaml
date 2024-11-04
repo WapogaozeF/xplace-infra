@@ -88,8 +88,14 @@ spec:
     - repoURL: https://charts.bitnami.com/bitnami
       chart: metallb
       targetRevision: 6.3.13
+      helm:
+        valueFiles:
+          - $values/values/metallb.yaml
     - repoURL: https://github.com/astra-studio/xplace-infra.git
       path: manifests/metallb
+      targetRevision: HEAD
+    - repoURL: https://github.com/astra-studio/xplace-infra.git
+      ref: values
       targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
@@ -132,6 +138,41 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=false
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metrics-server
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://kubernetes-sigs.github.io/metrics-server/
+      chart: metrics-server
+      targetRevision: 3.12.2
+      helm:
+        valueFiles:
+          - $values/values/metrics-server.yaml
+    - repoURL: https://github.com/astra-studio/xplace-infra.git
+      ref: values
+      targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true
