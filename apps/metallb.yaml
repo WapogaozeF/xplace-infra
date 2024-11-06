@@ -28,10 +28,10 @@ spec:
       helm:
         valueFiles:
           - $values/values/metallb.yaml
-    - repoURL: https://github.com/astra-studio/xplace-infra.git
+    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
       path: manifests/metallb
       targetRevision: HEAD
-    - repoURL: https://github.com/astra-studio/xplace-infra.git
+    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
       ref: values
       targetRevision: HEAD
   destination:

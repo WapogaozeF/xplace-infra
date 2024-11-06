@@ -17,10 +17,7 @@ spec:
       helm:
         valueFiles:
           - $values/values/cert-manager.yaml
-    - repoURL: https://github.com/astra-studio/xplace-infra.git
-      path: manifests/cert-manager
-      targetRevision: HEAD
-    - repoURL: https://github.com/astra-studio/xplace-infra.git
+    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
       ref: values
       targetRevision: HEAD
   destination:
