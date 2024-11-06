@@ -18,7 +18,7 @@ spec:
       path: manifests/monitoring
       targetRevision: HEAD
   destination:
-    server: { { .Values.spec.destination.server } }
+    server: https://kubernetes.default.svc
     namespace: monitoring
   syncPolicy:
     automated:

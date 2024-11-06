@@ -35,7 +35,7 @@ spec:
       ref: values
       targetRevision: HEAD
   destination:
-    server: { { .Values.spec.destination.server } }
+    server: https://kubernetes.default.svc
     namespace: metallb-system
   syncPolicy:
     automated:
