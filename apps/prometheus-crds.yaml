@@ -18,7 +18,7 @@ spec:
       path: manifests/monitoring
       targetRevision: HEAD
   destination:
-    server: {{ .Values.spec.destination.server }}
+    server: { { .Values.spec.destination.server } }
     namespace: monitoring
   syncPolicy:
     automated:
