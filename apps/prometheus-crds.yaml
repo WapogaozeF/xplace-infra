@@ -14,9 +14,6 @@ spec:
     - repoURL: https://github.com/prometheus-community/helm-charts.git
       path: charts/kube-prometheus-stack/charts/crds/crds/
       targetRevision: kube-prometheus-stack-65.5.1
-    - repoURL: https://github.com/astra-studio/xplace-infra.git
-      path: manifests/monitoring
-      targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -28,6 +25,6 @@ spec:
     syncOptions:
       - Replace=true
       - Validate=true
-      - CreateNamespace=false
+      - CreateNamespace=true
       - PrunePropagationPolicy=foreground
       - PruneLast=true
