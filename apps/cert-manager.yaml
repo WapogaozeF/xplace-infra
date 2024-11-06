@@ -24,7 +24,7 @@ spec:
       ref: values
       targetRevision: HEAD
   destination:
-    server: https://kubernetes.default.svc
+    server: { { .Values.spec.destination.server } }
     namespace: cert-manager
   syncPolicy:
     automated:
