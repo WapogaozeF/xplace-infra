@@ -1,0 +1,23 @@
+master:
+  resources:
+    requests:
+      cpu: 125m
+      memory: 128Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                  - development
+
+enabled: true
+auth:
+  enabled: true
+  existingSecret: harbor-secret
+  existingSecretPasswordKey: redis-password
