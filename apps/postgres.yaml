@@ -2,30 +2,27 @@
 # apiVersion: argoproj.io/v1alpha1
 # kind: Application
 # metadata:
-#   name: registry
+#   name: postgres
 #   namespace: argocd
 #   annotations:
-#     argocd.argoproj.io/sync-wave: "4"
+#     argocd.argoproj.io/sync-wave: "5"
 #   finalizers:
 #     - resources-finalizer.argocd.argoproj.io
 # spec:
 #   project: default
 #   sources:
 #     - repoURL: https://charts.bitnami.com/bitnami
-#       chart: harbor
-#       targetRevision: 24.0.1
+#       chart: postgresql
+#       targetRevision: 16.1.2
 #       helm:
 #         valueFiles:
-#           - $values/values/harbor.yaml
+#           - $values/values/postgres.yaml
 #     - repoURL: https://github.com/astra-studio/xplace-infra.git
 #       ref: values
 #       targetRevision: HEAD
-#     - repoURL: https://github.com/astra-studio/xplace-infra.git
-#       path: manifests/registry
-#       targetRevision: HEAD
 #   destination:
 #     server: https://kubernetes.default.svc
-#     namespace: registry
+#     namespace: postgres
 #   syncPolicy:
 #     automated:
 #       prune: true

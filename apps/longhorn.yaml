@@ -2,30 +2,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager
+  name: longhorn
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   sources:
-    - repoURL: https://charts.jetstack.io
-      chart: cert-manager
-      targetRevision: 1.16.1
+    - repoURL: https://charts.longhorn.io/
+      chart: longhorn
+      targetRevision: v1.7.2
       helm:
         valueFiles:
-          - $values/values/cert-manager.yaml
+          - $values/values/longhorn.yaml
     - repoURL: https://github.com/WapogaozeF/xplace-infra.git
       ref: values
       targetRevision: HEAD
-    - repoURL: https://github.com/astra-studio/xplace-infra.git
-      path: manifests/cert-manager
-      targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: cert-manager
+    namespace: longhorn-system
   syncPolicy:
     automated:
       prune: true
