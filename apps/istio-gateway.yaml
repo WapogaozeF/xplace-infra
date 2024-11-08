@@ -13,6 +13,7 @@ spec:
     - group: argoproj.io
       kind: Application
       jsonPointers:
+        - /webhooks/0/failurePolicy
         - /spec/syncPolicy/automated/allowEmpty
   project: default
   source:
