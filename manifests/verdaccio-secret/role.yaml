@@ -5,6 +5,6 @@ metadata:
   namespace: npm
   name: verdaccio-deployment-manager
 rules:
-  - apiGroups: ["apps"]
-    resources: ["deployments"]
+  - apiGroups: [""]
+    resources: ["deployments", "secrets"]
     verbs: ["get", "delete"]
