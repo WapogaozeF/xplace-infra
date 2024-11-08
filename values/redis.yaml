@@ -14,10 +14,25 @@ master:
               - key: workload
                 operator: In
                 values:
-                  - development
+                  - production
 
-enabled: true
+tls:
+  enabled: true
+  existingSecret: redis-ca-bundle
+  certKeyFilename: tls.key
+  certCAFilename: ca.crt
+  certFilename: tls.crt
+
+metrics:
+  enabled: true
+  podMonitor:
+    enabled: true
+  prometheusRole:
+    enabled: true
+  serviceMonitor:
+    enabled: true
+
 auth:
   enabled: true
-  existingSecret: harbor-secret
+  existingSecret: redis-secret
   existingSecretPasswordKey: redis-password
