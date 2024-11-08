@@ -6,5 +6,5 @@ metadata:
   name: verdaccio-deployment-manager
 rules:
   - apiGroups: [""]
-    resources: ["deployments", "secrets"]
+    resources: ["deployments", "secrets", "sealedsecret"]
     verbs: ["get", "delete"]
