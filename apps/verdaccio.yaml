@@ -1,0 +1,38 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.verdaccio.org/
+      chart: verdaccio 
+      targetRevision: 4.20.0
+      helm:
+        valueFiles:
+          - $values/values/verdaccio.yaml
+    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
+      ref: values
+      targetRevision: HEAD
+    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
+      path: manifests/verdaccio
+      targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: npm
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true

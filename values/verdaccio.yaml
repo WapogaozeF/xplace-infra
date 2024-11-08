@@ -2,7 +2,8 @@ image:
   repository: verdaccio/verdaccio
   # tag: defaults to appVersion in Chart.yaml
   pullPolicy: IfNotPresent
-  pullSecrets: []
+  pullSecrets:
+    []
     # - dockerhub-secret
 
 nameOverride: ""
@@ -31,7 +32,7 @@ nodeSelector: {}
 ## Affinity for pod assignment
 ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
 ##
-affinity: 
+affinity:
   nodeAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       nodeSelectorTerms:
@@ -61,13 +62,15 @@ revisionHistoryLimit: 10
 
 ## Define Probes
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes
-livenessProbe: {}
+livenessProbe:
+  {}
   # initialDelaySeconds: 0
   # periodSeconds: 10
   # timeoutSeconds: 1
   # successThreshold: 1
   # failureThreshold: 3
-readinessProbe: {}
+readinessProbe:
+  {}
   # initialDelaySeconds: 0
   # periodSeconds: 10
   # timeoutSeconds: 1
@@ -124,7 +127,8 @@ extraEnvVars:
 
 ## Secret Environment Variables
 ## Use this to pass sensitive key:values to the container via k8s secret
-secretEnvVars: {}
+secretEnvVars:
+  {}
   # SECRET_ENV_VAR: secretValue
   # corp_artifactory: foo
   # npmjs: bar
@@ -153,7 +157,7 @@ persistence:
   # storageClass: "-"
 
   accessMode: ReadWriteOnce
-  # size: 12Gi
+  size: 12Gi
   ## selector can be used to match an existing PersistentVolume
   ## selector:
   ##   matchLabels:
@@ -177,14 +181,16 @@ priorityClass:
   enabled: false
   # name: ""
 
-existingConfigMap: npm-verdaccio
+existingConfigMap: verdaccio
 
 useSecretHtpasswd: true
 # Secrets
-# secrets:
-#   # list of users and password for htpasswd plugin
-#   # This this is mounted as /verdaccio/auth/htpasswd on pods
-#   htpasswd: []
+secrets:
+  #   # list of users and password for htpasswd plugin
+  #   # This this is mounted as /verdaccio/auth/htpasswd on pods
+  htpasswd:
+    - username: admin
+      password: admin
 
 # Annotations to set on the deployment
 annotations: {}
@@ -194,7 +200,8 @@ annotations: {}
 topologySpreadConstraints: []
 
 # Extra ports to expose from the pod
-extraPorts: []
+extraPorts:
+  []
   # Example to add a metrics port to the pod and service
   # - port: 9090 # Port to expose on the pod
   #   name: metrics # Name of the port in the service
@@ -204,7 +211,8 @@ extraPorts: []
 
 # Additional manifests to deploy within the chart
 ## Can be useful to deploy additional secrets, serviceMonitors, etc
-extraManifests: []
+extraManifests:
+  []
   # - apiVersion: monitoring.coreos.com/v1
   #   kind: ServiceMonitor
   #   metadata:
@@ -223,6 +231,5 @@ cachingNginx:
   repository: nginx
   tag: 1.25.0
   pullPolicy: IfNotPresent
-  proxyCachePath: '/var/cache/nginx levels=1:2 keys_zone=STATIC:100m inactive=12h max_size=1g;'
+  proxyCachePath: "/var/cache/nginx levels=1:2 keys_zone=STATIC:100m inactive=12h max_size=1g;"
   resources: {}
-
