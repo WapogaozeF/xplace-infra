@@ -152,7 +152,7 @@ postgresql:
   enabled: true
   tls:
     enabled: true
-    certificatesSecret: harbor-postagres-ca-bundle
+    existingSecret: harbor-postagres-ca-bundle
     certKeyFilename: tls.key
     certCAFilename: ca.crt
     certFilename: tls.crt
