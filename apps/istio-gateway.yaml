@@ -10,10 +10,9 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   ignoreDifferences:
-    - group: admissionregistration.k8s.io
-      kind: ValidatingWebhookConfiguration
+    - group: argoproj.io
+      kind: Application
       jsonPointers:
-        - /webhooks/0/failurePolicy
         - /spec/syncPolicy/automated/allowEmpty
   project: default
   source:
