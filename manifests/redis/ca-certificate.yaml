@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: redis-internal-ca
-  namespace: registry
+  namespace: redis
 spec:
   isCA: true
   duration: 8760h
