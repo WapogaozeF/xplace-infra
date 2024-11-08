@@ -6,7 +6,10 @@ metadata:
   name: verdaccio-deployment-manager
 rules:
   - apiGroups: [""]
-    resources: ["deployments", "secrets"]
+    resources: ["secrets"]
+    verbs: ["get", "delete"]
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
     verbs: ["get", "delete"]
   - apiGroups: ["bitnami.com"]
     resources: ["sealedsecrets"]
