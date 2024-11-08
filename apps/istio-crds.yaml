@@ -9,12 +9,6 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  ignoreDifferences:
-    - group: "admissionregistration.k8s.io"
-      kind: ValidatingWebhookConfiguration
-      name: rev.validation.istio.io
-      jsonPointers:
-        - /webhook
   project: default
   source:
     repoURL: https://istio-release.storage.googleapis.com/charts
