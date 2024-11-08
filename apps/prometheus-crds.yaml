@@ -10,10 +10,10 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  sources:
-    - repoURL: https://github.com/prometheus-community/helm-charts.git
-      path: charts/kube-prometheus-stack/charts/crds/crds/
-      targetRevision: kube-prometheus-stack-65.8.1
+  source:
+    repoURL: https://github.com/prometheus-community/helm-charts.git
+    path: charts/kube-prometheus-stack/charts/crds/crds/
+    targetRevision: kube-prometheus-stack-65.8.1
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
