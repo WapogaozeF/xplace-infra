@@ -15,6 +15,7 @@ spec:
       name: rev.validation.istio.io
       jsonPointers:
         - /webhooks
+        - /spec/syncPolicy/automated/allowEmpty
   project: default
   source:
     repoURL: https://istio-release.storage.googleapis.com/charts
