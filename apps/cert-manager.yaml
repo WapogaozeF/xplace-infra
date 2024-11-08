@@ -20,9 +20,9 @@ spec:
     - repoURL: https://github.com/WapogaozeF/xplace-infra.git
       ref: values
       targetRevision: HEAD
-    # - repoURL: https://github.com/astra-studio/xplace-infra.git
-    #   path: manifests/cert-manager
-    #   targetRevision: HEAD
+    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
+      path: manifests/cert-manager
+      targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
