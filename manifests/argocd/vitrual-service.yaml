@@ -11,14 +11,10 @@ spec:
     - argocd
   http:
     - match:
-        - port: 80
-      redirect:
-        scheme: https
-        port: 443
-    - match:
-        - port: 443
+        - uri:
+            prefix: /argocd
       route:
         - destination:
-            host: argocd-server.argocd.svc.cluster.local
+            host: argocd-server
             port:
-              number: 443
+              number: 80
