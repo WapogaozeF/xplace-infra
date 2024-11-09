@@ -36,3 +36,11 @@ spec:
       - CreateNamespace=true
       - PrunePropagationPolicy=foreground
       - PruneLast=true
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: verdaccio-htpasswd
+      namespace: npm
+      jsonPointers:
+        - /data
+        - /metadata/labels
