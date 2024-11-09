@@ -19,6 +19,6 @@ spec:
         - port: 443
       route:
         - destination:
-            host: kubernetes-dashboard
+            host: k8s-dashboard-kong-proxy
             port:
               number: 443
