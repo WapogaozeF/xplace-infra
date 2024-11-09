@@ -19,6 +19,6 @@ spec:
         - port: 443
       route:
         - destination:
-            host: longhorn-frontend.monitoring.svc.cluster.local
+            host: longhorn-frontend.longhorn-system.svc.cluster.local
             port:
               number: 80
