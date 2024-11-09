@@ -5,9 +5,9 @@ metadata:
   name: xplaceinmyheart-ru
   namespace: istio-ingress
 spec:
-  secretName: xplaceinmyheart-ru-staging-tls
+  secretName: xplaceinmyheart-ru-tls
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-production
     kind: ClusterIssuer
   commonName: "*.xplaceinmyheart.ru"
   dnsNames:
