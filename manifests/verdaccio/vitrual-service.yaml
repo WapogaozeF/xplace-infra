@@ -1,0 +1,24 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: verdaccio
+  namespace: npm
+spec:
+  hosts:
+    - "npm.xplaceinmyheart.ru"
+  gateways:
+    - istio-system/shared-gateway
+  http:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: verdaccio.npm.svc.cluster.local
+            port:
+              number: 4873
