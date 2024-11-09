@@ -19,6 +19,6 @@ spec:
         - port: 443
       route:
         - destination:
-            host: k8s-dashboard-kubernetes-dashboard-web
+            host: kubernetes-dashboard
             port:
-              number: 8000
+              number: 443
