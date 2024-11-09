@@ -20,6 +20,7 @@ rules:
       - deployments
     verbs:
       - "get"
+      - "patch"
       - "update"
       - "delete"
 
