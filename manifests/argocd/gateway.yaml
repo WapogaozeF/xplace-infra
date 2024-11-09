@@ -1,0 +1,25 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  selector:
+    istio: gateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "argocd.xplaceinmyheart.ru"
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - "argocd.xplaceinmyheart.ru"
+      tls:
+        mode: SIMPLE
+        credentialName: xplaceinmyheart-ru-tls

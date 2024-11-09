@@ -1,0 +1,24 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  hosts:
+    - "argocd.xplaceinmyheart.ru"
+  gateways:
+    - argocd
+  http:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: argocd-server.argocd.svc.cluster.local
+            port:
+              number: 80
