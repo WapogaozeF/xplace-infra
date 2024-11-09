@@ -1,0 +1,25 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: longhorn
+  namespace: longhorn-system
+spec:
+  selector:
+    istio: gateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "longhorn.xplaceinmyheart.ru"
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - "longhorn.xplaceinmyheart.ru"
+      tls:
+        mode: SIMPLE
+        credentialName: xplaceinmyheart-ru-tls
