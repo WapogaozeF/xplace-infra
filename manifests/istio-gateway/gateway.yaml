@@ -13,15 +13,13 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "xplaceinmyheart.ru"
-        - "*.xplaceinmyheart.ru"
+        - "npm.xplaceinmyheart.ru"
     - port:
         number: 443
         name: https
         protocol: HTTPS
       hosts:
-        - "xplaceinmyheart.ru"
-        - "*.xplaceinmyheart.ru"
+        - "npm.xplaceinmyheart.ru"
       tls:
         mode: SIMPLE
         credentialName: xplaceinmyheart-ru-tls
