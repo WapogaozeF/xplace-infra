@@ -1,0 +1,25 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: k8s-dashboard
+  namespace: kube-system
+spec:
+  selector:
+    istio: gateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "k8s-dashboard.xplaceinmyheart.ru"
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - "k8s-dashboard.xplaceinmyheart.ru"
+      tls:
+        mode: SIMPLE
+        credentialName: xplaceinmyheart-ru-tls

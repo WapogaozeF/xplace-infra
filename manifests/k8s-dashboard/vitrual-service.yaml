@@ -1,0 +1,24 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: k8s-dashboard
+  namespace: kube-system
+spec:
+  hosts:
+    - "k8s-dashboard.xplaceinmyheart.ru"
+  gateways:
+    - k8s-dashboard
+  http:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: k8s-dashboard-kubernetes-dashboard-web
+            port:
+              number: 8000
