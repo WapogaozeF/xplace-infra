@@ -20,6 +20,9 @@ spec:
     - repoURL: https://github.com/WapogaozeF/xplace-infra.git
       ref: values
       targetRevision: HEAD
+    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
+      path: manifests/k8s-dashboard
+      targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
