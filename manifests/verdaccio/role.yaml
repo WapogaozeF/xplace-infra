@@ -5,6 +5,27 @@ metadata:
   namespace: npm
   name: verdaccio-secret-manager
 rules:
-  - apiGroups: [""]
-    resources: ["secrets"]
-    verbs: ["get", "update", "patch"]
+  - apiGroups:
+      - ""
+    resources:
+      - "secrets"
+    verbs:
+      - "get"
+      - "update"
+      - "patch"
+      - "delete"
+  - apiGroups:
+      - "apps"
+    resources:
+      - deployments
+    verbs:
+      - "get"
+      - "delete"
+
+  # - apiGroups:
+  #     - argoproj.io
+  #   resources:
+  #     - applications
+  #   verbs:
+  #     - "get"
+  #     - delete
