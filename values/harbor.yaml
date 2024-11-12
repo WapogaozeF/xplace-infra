@@ -162,6 +162,7 @@ postgresql:
     registry: docker.io
     repository: bitnami/postgresql
     tag: 14.13.0-debian-12-r16
+    digest: ""
   auth:
     enablePostgresUser: true
     existingSecret: harbor-secret
@@ -183,7 +184,7 @@ redis:
     existingSecret: harbor-secret
     existingSecretPasswordKey: redis-password
 
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: true
+# metrics:
+#   enabled: true
+#   serviceMonitor:
+#     enabled: true
