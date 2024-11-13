@@ -10,11 +10,18 @@ defaultRules:
     etcd: true
     configReloaders: true
     general: true
-    k8s: true
+    k8sContainerCpuUsageSecondsTotal: true
+    k8sContainerMemoryCache: true
+    k8sContainerMemoryRss: true
+    k8sContainerMemorySwap: true
+    k8sContainerResource: true
+    k8sContainerMemoryWorkingSetBytes: true
+    k8sPodOwner: true
     kubeApiserverAvailability: true
     kubeApiserverBurnrate: true
     kubeApiserverHistogram: true
     kubeApiserverSlos: true
+    kubeControllerManager: true
     kubelet: true
     kubeProxy: true
     kubePrometheusGeneral: true
@@ -23,7 +30,8 @@ defaultRules:
     kubernetesResources: true
     kubernetesStorage: true
     kubernetesSystem: true
-    kubeScheduler: true
+    kubeSchedulerAlerting: true
+    kubeSchedulerRecording: true
     kubeStateMetrics: true
     network: true
     node: true
@@ -31,10 +39,9 @@ defaultRules:
     nodeExporterRecording: true
     prometheus: true
     prometheusOperator: true
+    windows: true
 
 alertmanager:
-  fullnameOverride: alertmanager
-  enabled: true
   alertmanagerSpec:
     storage:
       volumeClaimTemplate:
@@ -43,37 +50,22 @@ alertmanager:
           resources:
             requests:
               storage: 5Gi
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: workload
-                  operator: In
-                  values:
-                    - production
-  ingress:
-    enabled: false
+    # affinity:
+    #   nodeAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       nodeSelectorTerms:
+    #         - matchExpressions:
+    #             - key: workload
+    #               operator: In
+    #               values:
+    #                 - production
 
 grafana:
-  enabled: true
-  fullnameOverride: grafana
-  forceDeployDatasources: false
-  forceDeployDashboards: false
-  defaultDashboardsEnabled: true
-  defaultDashboardsTimezone: utc
-  serviceMonitor:
-    enabled: true
-  admin:
-    existingSecret: grafana-admin-credentials
-    userKey: admin-user
-    passwordKey: admin-password
-
-kubeApiServer:
-  enabled: true
+  namespaceOverride: grafana
+  defaultDashboardsTimezone: Asia/Yekaterinburg
+  adminPassword: prom-operator
 
 kubelet:
-  enabled: true
   serviceMonitor:
     metricRelabelings:
       - action: replace
@@ -82,19 +74,11 @@ kubelet:
         targetLabel: instance
 
 kubeControllerManager:
-  enabled: true
   endpoints: # ips of servers
     - 10.122.0.50
     - 10.122.0.51
 
-coreDns:
-  enabled: true
-
-kubeDns:
-  enabled: false
-
 kubeEtcd:
-  enabled: true
   endpoints: # ips of servers
     - 10.122.0.50
     - 10.122.0.51
@@ -104,22 +88,17 @@ kubeEtcd:
     targetPort: 2381
 
 kubeScheduler:
-  enabled: true
   endpoints: # ips of servers
     - 10.122.0.50
     - 10.122.0.51
 
 kubeProxy:
-  enabled: true
   endpoints: # ips of servers
     - 10.122.0.50
     - 10.122.0.51
 
-kubeStateMetrics:
-  enabled: true
-
 kube-state-metrics:
-  fullnameOverride: kube-state-metrics
+  namespaceOverride: kube-state-metrics
   selfMonitor:
     enabled: true
   prometheus:
@@ -135,24 +114,9 @@ kube-state-metrics:
 
 nodeExporter:
   enabled: true
-  serviceMonitor:
-    relabelings:
-      - action: replace
-        regex: (.*)
-        replacement: $1
-        sourceLabels:
-          - __meta_kubernetes_pod_node_name
-        targetLabel: kubernetes_node
 
 prometheus-node-exporter:
-  fullnameOverride: node-exporter
-  podLabels:
-    jobLabel: node-exporter
-  extraArgs:
-    - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
-    - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
-  service:
-    portName: http-metrics
+  namespaceOverride: node-exporter
   prometheus:
     monitor:
       enabled: true
@@ -163,12 +127,6 @@ prometheus-node-exporter:
           sourceLabels:
             - __meta_kubernetes_pod_node_name
           targetLabel: kubernetes_node
-  resources:
-    requests:
-      memory: 512Mi
-      cpu: 250m
-    limits:
-      memory: 2048Mi
 
 prometheusOperator:
   affinity:
@@ -190,7 +148,6 @@ prometheusOperator:
         memory: 100Mi
 
 prometheus:
-  enabled: true
   prometheusSpec:
     storageSpec:
       volumeClaimTemplate:
@@ -219,6 +176,3 @@ prometheus:
                   operator: In
                   values:
                     - production
-
-thanosRuler:
-  enabled: false
