@@ -9,19 +9,19 @@ resources:
     cpu: 3
     memory: 2Gi
 
-affinity:
-  nodeAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: workload
-              operator: In
-              values:
-                - development
+# affinity:
+#   nodeAffinity:
+#     requiredDuringSchedulingIgnoredDuringExecution:
+#       nodeSelectorTerms:
+#         - matchExpressions:
+#             - key: workload
+#               operator: In
+#               values:
+#                 - development
 
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: true
-  prometheusRule:
-    enabled: true
+# metrics:
+#   enabled: true
+#   serviceMonitor:
+#     enabled: true
+#   prometheusRule:
+#     enabled: true
