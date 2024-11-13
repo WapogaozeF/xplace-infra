@@ -5,7 +5,7 @@ master:
       memory: 128Mi
     limits:
       cpu: 1
-      memory: 1Gi
+      memory: 2Gi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -14,11 +14,11 @@ master:
               - key: workload
                 operator: In
                 values:
-                  - production
+                  - development
 
 tls:
   enabled: true
-  existingSecret: redis-ca-bundle
+  existingSecret: redis-tls-secret
   certKeyFilename: tls.key
   certCAFilename: ca.crt
   certFilename: tls.crt
