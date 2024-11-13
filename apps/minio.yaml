@@ -14,9 +14,9 @@ spec:
     - repoURL: registry-1.docker.io/bitnamicharts
       chart: minio
       targetRevision: 14.8.5
-      # helm:
-      #   valueFiles:
-      #     - $values/values/minio.yaml
+      helm:
+        valueFiles:
+          - $values/values/minio.yaml
     - repoURL: https://github.com/WapogaozeF/xplace-infra.git
       ref: values
       targetRevision: HEAD

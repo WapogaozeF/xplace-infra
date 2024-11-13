@@ -1,23 +1,23 @@
-auth:
-  existingSecret: "minio-secret"
+# auth:
+#   existingSecret: "minio-secret"
 
-resources:
-  requests:
-    cpu: 250m
-    memory: 256Mi
-  limits:
-    cpu: 3
-    memory: 2Gi
+# resources:
+#   requests:
+#     cpu: 250m
+#     memory: 256Mi
+#   limits:
+#     cpu: 3
+#     memory: 2Gi
 
-# affinity:
-#   nodeAffinity:
-#     requiredDuringSchedulingIgnoredDuringExecution:
-#       nodeSelectorTerms:
-#         - matchExpressions:
-#             - key: workload
-#               operator: In
-#               values:
-#                 - development
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: workload
+              operator: In
+              values:
+                - development
 
 # metrics:
 #   enabled: true
