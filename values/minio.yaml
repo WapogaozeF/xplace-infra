@@ -1,5 +1,5 @@
-# auth:
-#   existingSecret: "minio-secret"
+auth:
+  existingSecret: "minio-secret"
 
 resources:
   requests:
