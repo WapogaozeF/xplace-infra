@@ -19,7 +19,7 @@ spec:
         - port: 443
       route:
         - destination:
-            host: minio-service
+            host: minio
             port:
               number: 9000
 ---
@@ -43,6 +43,6 @@ spec:
         - port: 443
       route:
         - destination:
-            host: minio-service
+            host: minio
             port:
               number: 9001
