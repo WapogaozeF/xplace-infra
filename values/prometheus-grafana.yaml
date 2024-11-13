@@ -61,7 +61,7 @@ alertmanager:
     #                 - production
 
 grafana:
-  namespaceOverride: grafana
+  # namespaceOverride: grafana
   defaultDashboardsTimezone: Asia/Yekaterinburg
   adminPassword: prom-operator
 
@@ -98,7 +98,7 @@ kubeProxy:
     - 10.122.0.51
 
 kube-state-metrics:
-  namespaceOverride: kube-state-metrics
+  # namespaceOverride: kube-state-metrics
   selfMonitor:
     enabled: true
   prometheus:
@@ -116,7 +116,7 @@ nodeExporter:
   enabled: true
 
 prometheus-node-exporter:
-  namespaceOverride: node-exporter
+  # namespaceOverride: node-exporter
   prometheus:
     monitor:
       enabled: true
