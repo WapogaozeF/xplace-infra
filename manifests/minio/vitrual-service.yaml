@@ -1,0 +1,48 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: minio-s3
+  namespace: minio
+spec:
+  hosts:
+    - "s3.xplaceinmyheart.ru"
+  gateways:
+    - minio
+  http:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: minio-service
+            port:
+              number: 9000
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: minio-s3ui
+  namespace: minio
+spec:
+  hosts:
+    - "s3ui.xplaceinmyheart.ru"
+  gateways:
+    - minio
+  http:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: minio-service
+            port:
+              number: 9001
