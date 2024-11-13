@@ -152,12 +152,12 @@ exporter:
 
 postgresql:
   enabled: true
-  tls:
-    enabled: true
-    certificatesSecret: postagres-bundle
-    certKeyFilename: tls.key
-    certCAFilename: ca.crt
-    certFilename: tls.crt
+  # tls:
+  #   enabled: true
+  #   certificatesSecret: postagres-bundle
+  #   certKeyFilename: tls.key
+  #   certCAFilename: ca.crt
+  #   certFilename: tls.crt
   image:
     registry: docker.io
     repository: bitnami/postgresql
