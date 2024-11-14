@@ -11,7 +11,7 @@ spec:
     - redis
   tcp:
     - match:
-        - port: 6379
+        - port: 80
       route:
         - destination:
             host: redis-development-master
