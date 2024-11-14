@@ -1,0 +1,24 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: redis
+  namespace: redis-development
+spec:
+  hosts:
+    - "redis.xplaceinmyheart.ru"
+  gateways:
+    - redis
+  tls:
+    - match:
+        - port: 80
+      redirect:
+        scheme: https
+        port: 443
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: redis-master
+            port:
+              number: 6379
