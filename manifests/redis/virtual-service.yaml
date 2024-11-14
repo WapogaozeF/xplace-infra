@@ -9,7 +9,7 @@ spec:
     - "redis.xplaceinmyheart.ru"
   gateways:
     - redis
-  http:
+  tls:
     - match:
         - port: 443
           sniHosts:
