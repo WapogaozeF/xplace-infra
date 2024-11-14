@@ -9,7 +9,7 @@ spec:
     istio: gateway
   servers:
     - port:
-        number: 80
+        number: 6379
         name: tcp-redis
         protocol: TCP
       hosts:
