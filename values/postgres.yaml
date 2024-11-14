@@ -1,22 +1,15 @@
-enabled: true
-tls:
-  enabled: true
-  certificatesSecret: postagres-ca-bundle
-  certKeyFilename: tls.key
-  certCAFilename: ca.crt
-  certFilename: tls.crt
 auth:
   enablePostgresUser: true
-  existingSecret: harbor-secret
-architecture: standalone
+  existingSecret: postgres-secret
+
 primary:
   resources:
     requests:
       cpu: 125m
       memory: 128Mi
     limits:
-      cpu: 1
-      memory: 1Gi
+      cpu: 2
+      memory: 4Gi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -26,5 +19,3 @@ primary:
                 operator: In
                 values:
                   - development
-  extendedConfiguration: |
-    max_connections = 1024
