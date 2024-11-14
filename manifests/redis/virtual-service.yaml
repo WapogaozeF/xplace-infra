@@ -16,6 +16,6 @@ spec:
           - redis.xplaceinmyheart.ru
       route:
         - destination:
-            host: redis-master
+            host: redis-development-master
             port:
               number: 6379
