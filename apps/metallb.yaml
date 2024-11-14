@@ -22,7 +22,7 @@ spec:
         - /spec/conversion/webhook/clientConfig/caBundle
   project: default
   sources:
-    - repoURL: https://charts.bitnami.com/bitnami
+    - repoURL: registry-1.docker.io/bitnamicharts
       chart: metallb
       targetRevision: 6.3.13
       helm:
