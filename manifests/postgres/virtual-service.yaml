@@ -1,0 +1,19 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: postgres
+  namespace: postgres-development
+spec:
+  hosts:
+    - "postgres.xplaceinmyheart.ru"
+  gateways:
+    - postgres
+  tcp:
+    - match:
+        - port: 5432
+      route:
+        - destination:
+            host: postgres-postgresql
+            port:
+              number: 5432

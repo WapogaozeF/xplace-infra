@@ -1,0 +1,17 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: postgres
+  namespace: postgres-development
+spec:
+  selector:
+    istio: gateway
+  servers:
+    - port:
+        number: 5432
+        name: tcp-postgres
+        protocol: TCP
+      hosts:
+        - "postgres.xplaceinmyheart.ru"
+
