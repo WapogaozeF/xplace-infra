@@ -9,7 +9,7 @@ spec:
     - "redis.xplaceinmyheart.ru"
   gateways:
     - redis
-  tls:
+  http:
     - match:
         - port: 80
       redirect:

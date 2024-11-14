@@ -152,12 +152,6 @@ exporter:
 
 postgresql:
   enabled: true
-  # tls:
-  #   enabled: true
-  #   certificatesSecret: postagres-bundle
-  #   certKeyFilename: tls.key
-  #   certCAFilename: ca.crt
-  #   certFilename: tls.crt
   image:
     registry: docker.io
     repository: bitnami/postgresql
@@ -184,7 +178,7 @@ redis:
     existingSecret: harbor-secret
     existingSecretPasswordKey: redis-password
 
-# metrics:
-#   enabled: true
-#   serviceMonitor:
-#     enabled: true
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
