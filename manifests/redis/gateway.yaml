@@ -9,17 +9,11 @@ spec:
     istio: gateway
   servers:
     - port:
-        number: 80
-        name: http
-        protocol: HTTP
-      hosts:
-        - "redis.xplaceinmyheart.ru"
-    - port:
         number: 443
         name: https
         protocol: HTTPS
       hosts:
         - "redis.xplaceinmyheart.ru"
       tls:
-        mode: SIMPLE
-        credentialName: xplaceinmyheart-ru-tls
+        mode: PASSTHROUGH
+        

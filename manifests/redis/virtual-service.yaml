@@ -9,14 +9,11 @@ spec:
     - "redis.xplaceinmyheart.ru"
   gateways:
     - redis
-  http:
-    - match:
-        - port: 80
-      redirect:
-        scheme: https
-        port: 443
+  tls:
     - match:
         - port: 443
+          sniHosts:
+          - redis.xplaceinmyheart.ru
       route:
         - destination:
             host: redis-master
