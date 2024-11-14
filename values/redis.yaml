@@ -16,12 +16,7 @@ master:
                 values:
                   - development
 
-tls:
-  enabled: true
-  existingSecret: redis-tls-secret
-  certKeyFilename: tls.key
-  certCAFilename: ca.crt
-  certFilename: tls.crt
+architecture: standalone
 
 metrics:
   enabled: true
