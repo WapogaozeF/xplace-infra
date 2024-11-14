@@ -9,10 +9,9 @@ spec:
     istio: gateway
   servers:
     - port:
-        number: 443
-        name: https
-        protocol: HTTPS
+        number: 6379
+        name: tcp-redis
+        protocol: TCP
       hosts:
         - "redis.xplaceinmyheart.ru"
-      tls:
-        mode: PASSTHROUGH
+

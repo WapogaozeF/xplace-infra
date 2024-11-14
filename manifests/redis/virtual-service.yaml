@@ -9,11 +9,9 @@ spec:
     - "redis.xplaceinmyheart.ru"
   gateways:
     - redis
-  tls:
+  tcp:
     - match:
-        - port: 443
-          sniHosts:
-          - redis.xplaceinmyheart.ru
+        - port: 6379
       route:
         - destination:
             host: redis-development-master
