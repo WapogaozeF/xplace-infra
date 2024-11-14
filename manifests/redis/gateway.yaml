@@ -15,5 +15,5 @@ spec:
       hosts:
         - "redis.xplaceinmyheart.ru"
       tls:
-        mode: PASSTHROUGH
-        
+        mode: SIMPLE
+        credentialName: xplaceinmyheart-ru-tls
