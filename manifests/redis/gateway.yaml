@@ -9,9 +9,9 @@ spec:
     istio: gateway
   servers:
     - port:
-        number: 80
-        name: http
-        protocol: HTTP
+        number: 6379
+        name: tcp-redis
+        protocol: TCP
       hosts:
         - "redis.xplaceinmyheart.ru"
 
