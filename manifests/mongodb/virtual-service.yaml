@@ -17,7 +17,9 @@ spec:
             host: mongodb-0-external
             port:
               number: 30001
+          weight: 50
         - destination:
             host: mongodb-0-external
             port:
               number: 30002
+          weight: 50
