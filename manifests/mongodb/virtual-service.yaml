@@ -6,20 +6,26 @@ metadata:
   namespace: mongodb-development
 spec:
   hosts:
-    - "mongodb.xplaceinmyheart.ru"
+    - "mongodb0.xplaceinmyheart.ru"
+    - "mongodb1.xplaceinmyheart.ru"
   gateways:
     - mongodb
   tcp:
     - match:
         - port: 27017
+          sniHosts:
+          - mongodb0.xplcaeinmyheart.ru
       route:
         - destination:
             host: mongodb-0.mongodb-headless.mongodb-development.svc.cluster.local
             port:
               number: 27017
-          # weight: 50
-        # - destination:
-        #     host: mongodb-1.mongodb-headless.mongodb-development.svc.cluster.local
-        #     port:
-        #       number: 27017
-        #   weight: 50
+    - match:
+        - port: 27017
+          sniHosts:
+          - mongodb1.xplcaeinmyheart.ru
+      route:
+        - destination:
+            host: mongodb-1.mongodb-headless.mongodb-development.svc.cluster.local
+            port:
+              number: 27017

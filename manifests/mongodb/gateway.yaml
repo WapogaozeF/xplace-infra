@@ -13,5 +13,6 @@ spec:
         name: tcp-mongodb
         protocol: TCP
       hosts:
-        - "mongodb.xplaceinmyheart.ru"
+        - "mongodb0.xplaceinmyheart.ru"
+        - "mongodb1.xplaceinmyheart.ru"
 
