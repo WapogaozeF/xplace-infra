@@ -2,6 +2,12 @@ auth:
   enablePostgresUser: true
   existingSecret: postgres-secret
 
+tls:
+  enabled: true
+  certificatesSecret: xplaceinmyheart-ru-tls
+  certFilename: tls.crt
+  certKeyFilename: tls.key
+
 primary:
   resources:
     requests:
