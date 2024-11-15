@@ -14,7 +14,12 @@ spec:
         - port: 27017
       route:
         - destination:
-            host: mongodb-0-external
+            host: mongodb-0.mongodb-headless.mongodb-development.svc.cluster.local
             port:
-              number: 30001
-
+              number: 27017
+          weight: 50
+        - destination:
+            host: mongodb-1.mongodb-headless.mongodb-development.svc.cluster.local
+            port:
+              number: 27017
+          weight: 50
