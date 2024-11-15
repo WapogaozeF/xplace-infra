@@ -2,6 +2,9 @@ auth:
   enablePostgresUser: true
   existingSecret: postgres-secret
 
+volumePermissions:
+  enabled: true
+  
 tls:
   enabled: true
   certificatesSecret: xplaceinmyheart-ru-tls
