@@ -17,9 +17,9 @@ spec:
             host: mongodb-0.mongodb-headless.mongodb-development.svc.cluster.local
             port:
               number: 27017
-          weight: 50
-        - destination:
-            host: mongodb-1.mongodb-headless.mongodb-development.svc.cluster.local
-            port:
-              number: 27017
-          weight: 50
+          # weight: 50
+        # - destination:
+        #     host: mongodb-1.mongodb-headless.mongodb-development.svc.cluster.local
+        #     port:
+        #       number: 27017
+        #   weight: 50
