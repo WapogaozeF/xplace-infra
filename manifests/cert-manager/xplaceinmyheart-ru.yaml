@@ -13,3 +13,9 @@ spec:
   dnsNames:
     - "xplaceinmyheart.ru"
     - "*.xplaceinmyheart.ru"
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "default,authentik,registry,kafka-development,mongodb-development,postgres-development,redis-development,open-search-development,istio-ingress"
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default,authentik,registry,kafka-development,mongodb-development,postgres-development,redis-development,open-search-development,istio-ingress"

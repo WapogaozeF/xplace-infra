@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubernetes-replicator
+  name: reflector
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
@@ -11,9 +11,9 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://helm.mittwald.de
-      chart: kubernetes-replicator
-      targetRevision: 2.11.0
+    - repoURL: https://emberstack.github.io/helm-charts
+      chart: reflector
+      targetRevision: 7.1.288
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
