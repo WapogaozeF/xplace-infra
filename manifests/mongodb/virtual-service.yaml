@@ -14,7 +14,7 @@ spec:
     - match:
         - port: 27017
           sniHosts:
-          - mongodb0.xplcaeinmyheart.ru
+          - mongodb0.xplaceinmyheart.ru
       route:
         - destination:
             host: mongodb-0.mongodb-headless.mongodb-development.svc.cluster.local
@@ -23,7 +23,7 @@ spec:
     - match:
         - port: 27017
           sniHosts:
-          - mongodb1.xplcaeinmyheart.ru
+          - mongodb1.xplaceinmyheart.ru
       route:
         - destination:
             host: mongodb-1.mongodb-headless.mongodb-development.svc.cluster.local
