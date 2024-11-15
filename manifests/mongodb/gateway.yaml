@@ -10,8 +10,10 @@ spec:
   servers:
     - port:
         number: 27017
-        name: tcp-mongodb
-        protocol: TCP
+        name: tls-mongodb
+        protocol: TLS
+      tls:
+        mode: PASSTHROUGH
       hosts:
         - "mongodb0.xplaceinmyheart.ru"
         - "mongodb1.xplaceinmyheart.ru"

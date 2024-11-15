@@ -10,7 +10,7 @@ spec:
     - "mongodb1.xplaceinmyheart.ru"
   gateways:
     - mongodb
-  tcp:
+  tls:
     - match:
         - port: 27017
           sniHosts:
