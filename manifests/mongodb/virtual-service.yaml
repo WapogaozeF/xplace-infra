@@ -1,0 +1,23 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: mongodb
+  namespace: mongodb-development
+spec:
+  hosts:
+    - "mongodb.xplaceinmyheart.ru"
+  gateways:
+    - mongodb
+  tcp:
+    - match:
+        - port: 27017
+      route:
+        - destination:
+            host: mongodb-0-external
+            port:
+              number: 30001
+        - destination:
+            host: mongodb-0-external
+            port:
+              number: 30002
