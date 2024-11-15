@@ -16,12 +16,11 @@ master:
                 values:
                   - development
 
-# tls:
-#   enabled: true
-#   tls.existingSecret: "xplaceinmyheart-ru-tls"
-#   tls.certFilename:
-#   tls.certKeyFilename:
-#   tls.certCAFilename:
+tls:
+  enabled: true
+  certificatesSecret: xplaceinmyheart-ru-tls
+  certFilename: tls.crt
+  certKeyFilename: tls.key
 
 architecture: standalone
 
