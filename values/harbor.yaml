@@ -1,6 +1,6 @@
-internalTLS:
-  enabled: true
-  caBundleSecret: "harbor-internal"
+# internalTLS:
+#   enabled: true
+#   caBundleSecret: "harbor-internal"
 
 exposureType: proxy
 
