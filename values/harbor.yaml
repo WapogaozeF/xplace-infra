@@ -68,8 +68,9 @@ tracing:
     insecure: true
 
 nginx:
-  tls:
-    enabled: false
+  behindReverseProxy: true
+  # tls:
+    # enabled: false
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -154,11 +155,11 @@ exporter:
 
 postgresql:
   enabled: true
-  tls:
-    enabled: true
-    certificatesSecret: xplaceinmyheart-ru-tls
-    certFilename: tls.crt
-    certKeyFilename: tls.key
+  # tls:
+  #   enabled: true
+  #   certificatesSecret: postgres-internal
+  #   certFilename: tls.crt
+  #   certKeyFilename: tls.key
   image:
     registry: docker.io
     repository: bitnami/postgresql
@@ -177,15 +178,15 @@ postgresql:
           CREATE DATABASE registry ENCODING 'UTF8';
           \c registry;
           CREATE TABLE schema_migrations(version bigint not null primary key, dirty boolean not null);
-    # affinity:
-    #   nodeAffinity:
-    #     requiredDuringSchedulingIgnoredDuringExecution:
-    #       nodeSelectorTerms:
-    #         - matchExpressions:
-    #             - key: workload
-    #               operator: In
-    #               values:
-    #                 - production
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload
+                  operator: In
+                  values:
+                    - production
 
 redis:
   enabled: true
