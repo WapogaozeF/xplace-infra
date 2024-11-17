@@ -1,0 +1,25 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: registry
+  namespace: registry
+spec:
+  selector:
+    istio: gateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "registry.xplaceinmyheart.ru"
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - "registry.xplaceinmyheart.ru"
+      tls:
+        mode: SIMPLE
+        credentialName: xplaceinmyheart-ru-tls
