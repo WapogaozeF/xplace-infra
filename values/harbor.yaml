@@ -175,6 +175,15 @@ postgresql:
           CREATE DATABASE registry ENCODING 'UTF8';
           \c registry;
           CREATE TABLE schema_migrations(version bigint not null primary key, dirty boolean not null);
+    # affinity:
+    #   nodeAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       nodeSelectorTerms:
+    #         - matchExpressions:
+    #             - key: workload
+    #               operator: In
+    #               values:
+    #                 - production
 
 redis:
   enabled: true
@@ -183,7 +192,7 @@ redis:
     existingSecret: harbor-secret
     existingSecretPasswordKey: redis-password
 
-metrics:
-  enabled: true
-  serviceMonitor:
-    enabled: true
+# metrics:
+#   enabled: true
+#   serviceMonitor:
+#     enabled: true
