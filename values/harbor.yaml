@@ -195,7 +195,16 @@ redis:
     enabled: true
     existingSecret: harbor-secret
     existingSecretPasswordKey: redis-password
-
+  master:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload
+                  operator: In
+                  values:
+                    - production
 # metrics:
 #   enabled: true
 #   serviceMonitor:
