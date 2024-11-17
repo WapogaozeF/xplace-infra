@@ -2,7 +2,7 @@ internalTLS:
   enabled: true
   caBundleSecret: "harbor-internal"
 
-exposureType: proxy
+exposureType: ingress
 
 service:
   type: ClusterIP
