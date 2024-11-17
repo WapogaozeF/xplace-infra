@@ -22,4 +22,4 @@ spec:
         - "registry.xplaceinmyheart.ru"
       tls:
         mode: ISTIO_MUTUAL
-        credentialName: xplaceinmyheart-ru-tls
+        # credentialName: xplaceinmyheart-ru-tls
