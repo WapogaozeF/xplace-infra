@@ -21,4 +21,4 @@ spec:
         - destination:
             host: registry-harbor
             port:
-              number: 443
+              number: 80
