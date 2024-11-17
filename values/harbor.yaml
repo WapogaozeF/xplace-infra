@@ -69,7 +69,8 @@ tracing:
 
 nginx:
   behindReverseProxy: true
-  # tls:
+  tls:
+    existingSecret: xplaceinmyheart-ru-tls
     # enabled: false
   affinity:
     nodeAffinity:
