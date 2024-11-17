@@ -1,0 +1,19 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: dragonflydb
+  namespace: dragonflydb-development
+spec:
+  hosts:
+    - "dragonflydb.xplaceinmyheart.ru"
+  gateways:
+    - dragonflydb
+  tcp:
+    - match:
+        - port: 6379
+      route:
+        - destination:
+            host: dragonflydb-development
+            port:
+              number: 6379
