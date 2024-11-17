@@ -154,10 +154,9 @@ postgresql:
   enabled: true
   tls:
     enabled: true
-    certificatesSecret: postagres-bundle
-    certKeyFilename: tls.key
-    certCAFilename: ca.crt
+    certificatesSecret: xplaceinmyheart-ru-tls
     certFilename: tls.crt
+    certKeyFilename: tls.key
   image:
     registry: docker.io
     repository: bitnami/postgresql
