@@ -2,7 +2,7 @@ internalTLS:
   enabled: true
   caBundleSecret: "harbor-internal"
 
-exposureType: ingress
+exposureType: proxy
 
 service:
   type: ClusterIP
@@ -68,6 +68,8 @@ tracing:
     insecure: true
 
 nginx:
+  tls:
+    enabled: false
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
