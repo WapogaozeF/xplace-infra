@@ -70,8 +70,7 @@ tracing:
 nginx:
   behindReverseProxy: true
   tls:
-    existingSecret: xplaceinmyheart-ru-tls
-    # enabled: false
+    enabled: false
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -156,11 +155,12 @@ exporter:
 
 postgresql:
   enabled: true
-  # tls:
-  #   enabled: true
-  #   certificatesSecret: postgres-internal
-  #   certFilename: tls.crt
-  #   certKeyFilename: tls.key
+  tls:
+    enabled: true
+    certificatesSecret: postgres
+    certFilename: tls.crt
+    certKeyFilename: tls.key
+    certCAFilename: ca.crt
   image:
     registry: docker.io
     repository: bitnami/postgresql
