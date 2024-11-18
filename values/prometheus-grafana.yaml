@@ -67,6 +67,8 @@ grafana:
   grafana.ini:
     server:
       root_url: https://grafana.xplaceinmyheart.ru/
+  persistence:
+    enabled: true
 
 kubelet:
   serviceMonitor:
