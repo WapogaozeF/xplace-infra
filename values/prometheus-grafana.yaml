@@ -50,20 +50,23 @@ alertmanager:
           resources:
             requests:
               storage: 5Gi
-    # affinity:
-    #   nodeAffinity:
-    #     requiredDuringSchedulingIgnoredDuringExecution:
-    #       nodeSelectorTerms:
-    #         - matchExpressions:
-    #             - key: workload
-    #               operator: In
-    #               values:
-    #                 - production
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload
+                  operator: In
+                  values:
+                    - production
 
 grafana:
   # namespaceOverride: grafana
   defaultDashboardsTimezone: Asia/Yekaterinburg
   adminPassword: prom-operator
+  grafana.ini:
+    server:
+      root_url: https://grafana.xplaceinmyheart.ru/
 
 kubelet:
   serviceMonitor:
