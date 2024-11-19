@@ -22,3 +22,6 @@ spec:
             host: registry-harbor-portal
             port:
               number: 443
+          request:
+              set:
+                X-Forwarded-Proto: https
