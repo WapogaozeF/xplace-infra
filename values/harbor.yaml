@@ -2,7 +2,7 @@
 #   enabled: true
 #   caBundleSecret: "harbor-internal"
 
-externalURL: https://registry.xplaceinmyheart.ru
+externalURL: http://registry.xplaceinmyheart.ru
 exposureType: proxy
 
 service:
