@@ -7,7 +7,7 @@ volumePermissions:
   
 tls:
   enabled: true
-  certificatesSecret: postgres-internal
+  certificatesSecret: postgres
   certFilename: tls.crt
   certKeyFilename: tls.key
   certCAFilename: ca.crt

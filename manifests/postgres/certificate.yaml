@@ -2,14 +2,14 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: postgres-internal
+  name: postgres
   namespace: postgres-development
 spec:
   isCA: false
   duration: 8760h
   renewBefore: 360h
-  commonName: postgres-internal
-  secretName: postgres-internal
+  commonName: postgres
+  secretName: postgres
   issuerRef:
     name: postgres-ca-issuer
     kind: Issuer
