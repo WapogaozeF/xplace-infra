@@ -4,7 +4,9 @@
 
 externalURL: https://registry.xplaceinmyheart.ru
 # exposureType: proxy
-
+nginx:
+  behindReverseProxy: true
+  
 service:
   type: ClusterIP
 
