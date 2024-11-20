@@ -136,7 +136,7 @@ persistence:
       storageClass: ""
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 5Gi
+      size: 35Gi
       annotations: {}
     jobservice:
       jobLog:
@@ -497,7 +497,15 @@ nginx:
   extraEnvVars: []
   nodeSelector: {}
   tolerations: []
-  affinity: {}
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                  - production
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
   # - maxSkew: 1
@@ -528,7 +536,16 @@ portal:
   extraEnvVars: []
   nodeSelector: {}
   tolerations: []
-  affinity: {}
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                  - production
+
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
   # - maxSkew: 1
@@ -565,14 +582,26 @@ core:
   startupProbe:
     enabled: true
     initialDelaySeconds: 10
-  # resources:
-  #  requests:
-  #    memory: 256Mi
-  #    cpu: 100m
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    limits:
+      memory: 4Gi
+      cpu: 2
   extraEnvVars: []
   nodeSelector: {}
   tolerations: []
-  affinity: {}
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                  - production
+
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
   # - maxSkew: 1
@@ -655,7 +684,15 @@ jobservice:
   extraEnvVars: []
   nodeSelector: {}
   tolerations: []
-  affinity: {}
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                  - production
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints:
   # - maxSkew: 1
@@ -727,7 +764,15 @@ registry:
   revisionHistoryLimit: 10
   nodeSelector: {}
   tolerations: []
-  affinity: {}
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                  - production
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
   # - maxSkew: 1
@@ -811,7 +856,15 @@ trivy:
   extraEnvVars: []
   nodeSelector: {}
   tolerations: []
-  affinity: {}
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                  - production
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
   # - maxSkew: 1
@@ -905,7 +958,15 @@ database:
     extraEnvVars: []
     nodeSelector: {}
     tolerations: []
-    affinity: {}
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload
+                  operator: In
+                  values:
+                    - production
     ## The priority class to run the pod as
     priorityClassName:
     # containers to be run before the controller's container starts.
@@ -979,7 +1040,15 @@ redis:
     extraEnvVars: []
     nodeSelector: {}
     tolerations: []
-    affinity: {}
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: workload
+                  operator: In
+                  values:
+                    - production
     ## The priority class to run the pod as
     priorityClassName:
     # containers to be run before the controller's container starts.
@@ -1045,7 +1114,15 @@ exporter:
   podLabels: {}
   nodeSelector: {}
   tolerations: []
-  affinity: {}
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                  - production
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
   ## The priority class to run the pod as
@@ -1056,4 +1133,3 @@ exporter:
   #   whenUnsatisfiable: DoNotSchedule
   cacheDuration: 23
   cacheCleanInterval: 14400
-
