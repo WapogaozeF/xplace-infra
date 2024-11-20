@@ -1,32 +1,32 @@
----
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: harbor-self-signed-issuer
-  namespace: registry
-spec:
-  selfSigned: {}
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: harbor-root
-  namespace: registry
-spec:
-  isCA: true
-  duration: 8760h
-  renewBefore: 360h
-  commonName: harbor-root
-  secretName: harbor-root
-  issuerRef:
-    name: harbor-self-signed-issuer
-    kind: Issuer
----
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: harbor-ca-issuer
-  namespace: registry
-spec:
-  ca:
-    secretName: harbor-root
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: Issuer
+# metadata:
+#   name: harbor-self-signed-issuer
+#   namespace: registry
+# spec:
+#   selfSigned: {}
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: harbor-root
+#   namespace: registry
+# spec:
+#   isCA: true
+#   duration: 8760h
+#   renewBefore: 360h
+#   commonName: harbor-root
+#   secretName: harbor-root
+#   issuerRef:
+#     name: harbor-self-signed-issuer
+#     kind: Issuer
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: Issuer
+# metadata:
+#   name: harbor-ca-issuer
+#   namespace: registry
+# spec:
+#   ca:
+#     secretName: harbor-root

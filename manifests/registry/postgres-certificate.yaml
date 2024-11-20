@@ -1,15 +1,15 @@
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: postgres
-  namespace: registry
-spec:
-  isCA: false
-  duration: 8760h
-  renewBefore: 360h
-  commonName: postgres
-  secretName: postgres
-  issuerRef:
-    name: harbor-ca-issuer
-    kind: Issuer
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: postgres
+#   namespace: registry
+# spec:
+#   isCA: false
+#   duration: 8760h
+#   renewBefore: 360h
+#   commonName: postgres
+#   secretName: postgres
+#   issuerRef:
+#     name: harbor-ca-issuer
+#     kind: Issuer
