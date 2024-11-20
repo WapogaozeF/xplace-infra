@@ -19,9 +19,9 @@ master:
 tls:
   enabled: true
   existingSecret: redis
-  certFilename: tls.crt
+  certFilename: tls.pem
   certKeyFilename: tls.key
-  certCAFilename: ca.crt
+  certCAFilename: ca.pem
 
 architecture: standalone
 

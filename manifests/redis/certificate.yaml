@@ -13,3 +13,8 @@ spec:
   issuerRef:
     name: redis-ca-issuer
     kind: Issuer
+  keystores:
+    pkcs12:
+      create: true
+    cobinedPEM:
+      create: true
