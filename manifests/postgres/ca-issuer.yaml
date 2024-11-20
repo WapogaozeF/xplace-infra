@@ -1,0 +1,32 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: postgres-self-signed-issuer
+  namespace: postgres-development
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: postgres-root
+  namespace: postgres-development
+spec:
+  isCA: true
+  duration: 8760h
+  renewBefore: 360h
+  commonName: postgres-root
+  secretName: postgres-root
+  issuerRef:
+    name: postgres-self-signed-issuer
+    kind: Issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: postgres-ca-issuer
+  namespace: postgres-development
+spec:
+  ca:
+    secretName: postgres-root

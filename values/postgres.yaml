@@ -7,7 +7,7 @@ volumePermissions:
   
 tls:
   enabled: true
-  certificatesSecret: xplaceinmyheart-ru-tls
+  certificatesSecret: postgres-internal
   certFilename: tls.crt
   certKeyFilename: tls.key
   certCAFilename: ca.crt
