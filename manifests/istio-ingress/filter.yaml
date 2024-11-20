@@ -22,4 +22,4 @@ spec:
           name: envoy.filters.http.buffer
           typed_config:
             "@type": type.googleapis.com/envoy.extensions.filters.http.buffer.v3.Buffer
-            max_request_bytes: 10737418240
+            max_request_bytes: 4294967295 
