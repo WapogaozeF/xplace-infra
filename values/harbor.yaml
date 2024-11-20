@@ -6,7 +6,8 @@ externalURL: https://registry.xplaceinmyheart.ru
 # exposureType: proxy
 nginx:
   behindReverseProxy: true
-  
+  existingSecret: xplaceinmyheart-ru-tls
+
 service:
   type: ClusterIP
 
