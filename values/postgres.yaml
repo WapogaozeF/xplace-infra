@@ -10,7 +10,7 @@ tls:
   certificatesSecret: xplaceinmyheart-ru-tls
   certFilename: tls.crt
   certKeyFilename: tls.key
-
+  certCAFilename: ca.crt
 primary:
   resources:
     requests:
