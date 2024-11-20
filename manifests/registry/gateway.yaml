@@ -21,5 +21,4 @@ spec:
       hosts:
         - "registry.xplaceinmyheart.ru"
       tls:
-        mode: SIMPLE
-        credentialName: xplaceinmyheart-ru-tls
+        mode: PASSTHROUGH
