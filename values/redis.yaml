@@ -18,7 +18,7 @@ master:
 
 tls:
   enabled: true
-  certificatesSecret: redis
+  existingSecret: redis
   certFilename: tls.crt
   certKeyFilename: tls.key
   certCAFilename: ca.crt
