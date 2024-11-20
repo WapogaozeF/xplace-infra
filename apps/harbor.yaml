@@ -20,9 +20,9 @@ spec:
     - repoURL: https://github.com/WapogaozeF/xplace-infra.git
       ref: values
       targetRevision: HEAD
-    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
-      path: manifests/registry
-      targetRevision: HEAD
+    # - repoURL: https://github.com/WapogaozeF/xplace-infra.git
+    #   path: manifests/registry
+    #   targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: registry
