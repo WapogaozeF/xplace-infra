@@ -19,6 +19,6 @@ spec:
         - port: 443
       route:
         - destination:
-            host: registry-harbor
+            host: harbor
             port:
-              number: 443
+              number: 80
