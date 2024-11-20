@@ -19,5 +19,8 @@ spec:
               number: 80
     - match:
         - port: 443
-      redirect:
-        port: 80
+      route:
+        - destination:
+            host: harbor
+            port:
+              number: 80
