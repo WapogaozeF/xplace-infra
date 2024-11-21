@@ -13,7 +13,7 @@ spec:
     - match:
         - port: 80
       redirect:
-        # scheme: https
+        scheme: https
         port: 443
     - match:
         - port: 443
