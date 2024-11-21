@@ -11,14 +11,57 @@ spec:
     - registry
   http:
     - match:
-        - port: 80
-      redirect:
-        scheme: https
-        port: 443
-    - match:
-        - port: 443
+        - uri:
+            prefix: /api/
       route:
         - destination:
-            host: harbor
+            host: harbor-core
             port:
               number: 80
+    - match:
+        - uri:
+            prefix: /service/
+      route:
+        - destination:
+            host: harbor-core
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /chartrepo
+      route:
+        - destination:
+            host: harbor-core
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /c/
+      route:
+        - destination:
+            host: harbor-core
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /v1/
+      route:
+        - destination:
+            host: harbor-core
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /v2/
+      route:
+        - destination:
+            host: harbor-core
+            port:
+              number: 80
+    - name: portal
+      route:
+        - destination:
+            host: harbor-portal
+            port:
+              number: 80
+      timeout: 30s
