@@ -15,7 +15,7 @@ spec:
             prefix: /api/
       route:
         - destination:
-            host: harbor-core
+            host: registry-harbor-core
             port:
               number: 80
     - match:
@@ -23,7 +23,7 @@ spec:
             prefix: /service/
       route:
         - destination:
-            host: harbor-core
+            host: registry-harbor-core
             port:
               number: 80
     - match:
@@ -31,7 +31,7 @@ spec:
             prefix: /chartrepo
       route:
         - destination:
-            host: harbor-core
+            host: registry-harbor-core
             port:
               number: 80
     - match:
@@ -39,7 +39,7 @@ spec:
             prefix: /c/
       route:
         - destination:
-            host: harbor-core
+            host: registry-harbor-core
             port:
               number: 80
     - match:
@@ -47,7 +47,7 @@ spec:
             prefix: /v1/
       route:
         - destination:
-            host: harbor-core
+            host: registry-harbor-core
             port:
               number: 80
     - match:
@@ -55,13 +55,13 @@ spec:
             prefix: /v2/
       route:
         - destination:
-            host: harbor-core
+            host: registry-harbor-core
             port:
               number: 80
     - name: portal
       route:
         - destination:
-            host: harbor-portal
+            host: registry-harbor-portal
             port:
               number: 80
       timeout: 30s
