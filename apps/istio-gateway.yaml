@@ -21,7 +21,7 @@ spec:
       chart: gateway
       targetRevision: 1.24.0
     - repoURL: https://github.com/WapogaozeF/xplace-infra.git
-      path: manifests/istio-ingress
+      path: manifests/istio-filters
       targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
