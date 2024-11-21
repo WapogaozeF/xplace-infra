@@ -12,9 +12,7 @@ spec:
   - development-mongodb-0.development-mongodb-svc.mongodb.svc.cluster.local
   - development-mongodb-1.development-mongodb-svc.mongodb.svc.cluster.local
   - development-mongodb-2.development-mongodb-svc.mongodb.svc.cluster.local
-  - mongodb-0.xplaceinmyheart.ru
-  - mongodb-1.xplaceinmyheart.ru
-  - mongodb-2.xplaceinmyheart.ru
+  - mongodb.xplaceinmyheart.ru
   secretName: mongodb-external-key-pair
   privateKey:
     algorithm: RSA
