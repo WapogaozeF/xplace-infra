@@ -278,56 +278,56 @@ harborAdminPassword: "Harbor12345"
 # in each component tls cert files need to provided in advance.
 internalTLS:
   # If internal TLS enabled
-  enabled: false
+  enabled: true
   # enable strong ssl ciphers (default: false)
   strong_ssl_ciphers: false
   # There are three ways to provide tls
   # 1) "auto" will generate cert automatically
   # 2) "manual" need provide cert file manually in following value
   # 3) "secret" internal certificates from secret
-  certSource: "auto"
+  certSource: "secret"
   # The content of trust ca, only available when `certSource` is "manual"
   trustCa: ""
   # core related cert configuration
   core:
     # secret name for core's tls certs
-    secretName: ""
+    secretName: "harbor-internal"
     # Content of core's TLS cert file, only available when `certSource` is "manual"
-    crt: ""
+    crt: "tls.crt"
     # Content of core's TLS key file, only available when `certSource` is "manual"
-    key: ""
+    key: "tls.key"
   # jobservice related cert configuration
   jobservice:
     # secret name for jobservice's tls certs
-    secretName: ""
+    secretName: "harbor-internal"
     # Content of jobservice's TLS key file, only available when `certSource` is "manual"
-    crt: ""
+    crt: "tls.crt"
     # Content of jobservice's TLS key file, only available when `certSource` is "manual"
-    key: ""
+    key: "tls.key"
   # registry related cert configuration
   registry:
     # secret name for registry's tls certs
-    secretName: ""
+    secretName: "harbor-internal"
     # Content of registry's TLS key file, only available when `certSource` is "manual"
-    crt: ""
+    crt: "tls.crt"
     # Content of registry's TLS key file, only available when `certSource` is "manual"
-    key: ""
+    key: "tls.key"
   # portal related cert configuration
   portal:
     # secret name for portal's tls certs
-    secretName: ""
+    secretName: "harbor-internal"
     # Content of portal's TLS key file, only available when `certSource` is "manual"
-    crt: ""
+    crt: "tls.crt"
     # Content of portal's TLS key file, only available when `certSource` is "manual"
-    key: ""
+    key: "tls.key"
   # trivy related cert configuration
   trivy:
     # secret name for trivy's tls certs
-    secretName: ""
+    secretName: "harbor-internal"
     # Content of trivy's TLS key file, only available when `certSource` is "manual"
-    crt: ""
+    crt: "tls.crt"
     # Content of trivy's TLS key file, only available when `certSource` is "manual"
-    key: ""
+    key: "tls.key"
 
 ipFamily:
   # ipv6Enabled set to true if ipv6 is enabled in cluster, currently it affected the nginx related component
