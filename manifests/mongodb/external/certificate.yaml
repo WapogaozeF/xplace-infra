@@ -1,0 +1,24 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mongodb-external
+  namespace: mongodb
+spec:
+  isCA: false
+  duration: 2160h
+  renewBefore: 360h
+  dnsNames:
+  - development-mongodb-0.development-mongodb-svc.mongodb.svc.cluster.local
+  - development-mongodb-1.development-mongodb-svc.mongodb.svc.cluster.local
+  - development-mongodb-2.development-mongodb-svc.mongodb.svc.cluster.local
+  - mongodb.xplaceinmyheart.ru
+  secretName: mongodb-external-key-pair
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+    size: 4096
+  issuerRef:
+    name: xplaceinmyheart-ru-ca
+    kind: ClusterIssuer
+    group: cert-manager.io

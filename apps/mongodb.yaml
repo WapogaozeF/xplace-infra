@@ -1,38 +1,29 @@
-# ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: mongodb
-#   namespace: argocd
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "5"
-#   finalizers:
-#     - resources-finalizer.argocd.argoproj.io
-# spec:
-#   project: default
-#   sources:
-#     - repoURL: registry-1.docker.io/bitnamicharts
-#       chart: mongodb
-#       targetRevision: 16.3.0
-#       helm:
-#         valueFiles:
-#           - $values/values/mongodb.yaml
-#     - repoURL: https://github.com/WapogaozeF/xplace-infra.git
-#       ref: values
-#       targetRevision: HEAD
-#     - repoURL: https://github.com/WapogaozeF/xplace-infra.git
-#       path: manifests/mongodb
-#       targetRevision: HEAD
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: mongodb-development
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#       allowEmpty: false
-#     syncOptions:
-#       - Validate=true
-#       - CreateNamespace=true
-#       - PrunePropagationPolicy=foreground
-#       - PruneLast=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mongodb
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/WapogaozeF/xplace-infra.git
+    path: manifests/mongodb
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mongodb
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
