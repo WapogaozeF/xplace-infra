@@ -24,9 +24,9 @@ spec:
       db: admin
     scramCredentialsSecretName: my-scram
   replicaSetHorizons:
-  - horizon: development-mongodb-0.xplaceinmyheart.ru:27017
-  - horizon: development-mongodb-1.xplaceinmyheart.ru:27017
-  - horizon: development-mongodb-2.xplaceinmyheart.ru:27017
+  - horizon: mongodb-0.xplaceinmyheart.ru:27017
+  - horizon: mongodb-1.xplaceinmyheart.ru:27017
+  - horizon: mongodb-2.xplaceinmyheart.ru:27017
   security:
     tls:
       enabled: true
