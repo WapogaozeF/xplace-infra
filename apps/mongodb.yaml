@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/WapogaozeF/xplace-infra.git
-    path: manifests/mongodb
+    path: manifests/mongodb/
     targetRevision: HEAD
     directory:
       recurse: true
