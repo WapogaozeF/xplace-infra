@@ -52,16 +52,16 @@ spec:
               requests:
                 cpu: 500m
                 memory: 1Gi      
-          affinity:
-            podAntiAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-              - labelSelector:
-                  matchExpressions:
-                  - key: app
-                    operator: In
-                    values:
-                    - my-mongodb
-                topologyKey: "kubernetes.io/hostname"
+          # affinity:
+          #   podAntiAffinity:
+          #     requiredDuringSchedulingIgnoredDuringExecution:
+          #     - labelSelector:
+          #         matchExpressions:
+          #         - key: app
+          #           operator: In
+          #           values:
+          #           - my-mongodb
+          #       topologyKey: "kubernetes.io/hostname"
       volumeClaimTemplates:
       - metadata:
           name: data-volume
