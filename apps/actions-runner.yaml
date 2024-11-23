@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://actions-runner-controller.github.io/
+    - repoURL: https://actions-runner-controller.github.io/actions-runner-controller
       chart: actions-runner-controller
       targetRevision: v0.23.7
       helm:
