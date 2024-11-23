@@ -7,3 +7,12 @@ spec:
   template:
     spec:
       repository: astra-studio/food-to-go
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: workload
+                    operator: In
+                    values:
+                      - development
