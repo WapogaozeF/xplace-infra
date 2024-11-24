@@ -1,0 +1,14 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: minio
+  namespace: minio
+spec:
+  host: minio
+  trafficPolicy:
+    connectionPool:
+      http:
+        h2UpgradePolicy: DO_NOT_UPGRADE
+    tls:
+      mode: DISABLE
