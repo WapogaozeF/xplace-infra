@@ -22,6 +22,11 @@ spec:
             host: minio
             port:
               number: 9000
+      headers:
+        request:
+          set:
+            Connection: upgrade
+
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
