@@ -1,24 +1,28 @@
-# ---
-# apiVersion: networking.istio.io/v1beta1
-# kind: VirtualService
-# metadata:
-#   name: registry
-#   namespace: registry
-# spec:
-#   hosts:
-#     - "registry.xplaceinmyheart.ru"
-#   gateways:
-#     - registry
-#   http:
-#     - match:
-#         - port: 80
-#       redirect:
-#         scheme: https
-#         port: 443
-#     - match:
-#         - port: 443
-#       route:
-#         - destination:
-#             host: harbor
-#             port:
-#               number: 80
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: registry
+  namespace: registry
+spec:
+  hosts:
+    - "registry.xplaceinmyheart.ru"
+  gateways:
+    - registry
+  http:
+    - match:
+        - port: 443
+      route:
+        - destination:
+            host: harbor
+            port:
+              number: 80
+      rewrite:
+        uri: "/"
+    - match:
+        - port: 80
+      route:
+        - destination:
+            host: harbor
+            port:
+              number: 80
