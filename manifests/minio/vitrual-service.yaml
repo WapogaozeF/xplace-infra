@@ -22,11 +22,6 @@ spec:
             host: minio
             port:
               number: 9000
-      headers:
-        request:
-          set:
-            Connection: upgrade
-            Upgrade: websocket
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
