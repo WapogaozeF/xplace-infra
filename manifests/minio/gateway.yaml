@@ -16,8 +16,8 @@ spec:
         - "s3ui.xplaceinmyheart.ru"
     - port:
         number: 443
-        name: http2
-        protocol: HTTP2
+        name: https
+        protocol: HTTPS
       hosts:
         - "s3.xplaceinmyheart.ru"
         - "s3ui.xplaceinmyheart.ru"

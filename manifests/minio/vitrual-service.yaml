@@ -46,3 +46,7 @@ spec:
             host: minio
             port:
               number: 9001
+      headers:
+        request:
+          set:
+            Connection: upgrade
