@@ -17,8 +17,8 @@ spec:
             host: harbor
             port:
               number: 80
-      rewrite:
-        uri: "/"
+      # rewrite:
+      #   uri: "/"
     - match:
         - port: 80
       route:
