@@ -16,13 +16,11 @@ spec:
         - destination:
             host: harbor
             port:
-              number: 80
+              number: 443
       # rewrite:
       #   uri: "/"
     - match:
         - port: 80
-      route:
-        - destination:
-            host: harbor
-            port:
-              number: 80
+      redirect:
+        scheme: https
+        port: 443
