@@ -505,7 +505,7 @@ nginx:
               - key: workload
                 operator: In
                 values:
-                  - production
+                  - development
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
   # - maxSkew: 1
@@ -544,7 +544,7 @@ portal:
               - key: workload
                 operator: In
                 values:
-                  - production
+                  - development
 
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
@@ -600,7 +600,7 @@ core:
               - key: workload
                 operator: In
                 values:
-                  - production
+                  - development
 
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
@@ -692,7 +692,7 @@ jobservice:
               - key: workload
                 operator: In
                 values:
-                  - production
+                  - development
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints:
   # - maxSkew: 1
@@ -772,7 +772,7 @@ registry:
               - key: workload
                 operator: In
                 values:
-                  - production
+                  - development
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
   # - maxSkew: 1
@@ -864,7 +864,7 @@ trivy:
               - key: workload
                 operator: In
                 values:
-                  - production
+                  - development
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
   # - maxSkew: 1
@@ -903,7 +903,7 @@ trivy:
   # Currently, the database is updated every 12 hours and published as a new release to GitHub.
   #
   # Anonymous downloads from GitHub are subject to the limit of 60 requests per hour. Normally such rate limit is enough
-  # for production operations. If, for any reason, it's not enough, you could increase the rate limit to 5000
+  # for development operations. If, for any reason, it's not enough, you could increase the rate limit to 5000
   # requests per hour by specifying the GitHub access token. For more details on GitHub rate limiting please consult
   # https://developer.github.com/v3/#rate-limiting
   #
@@ -966,7 +966,7 @@ database:
                 - key: workload
                   operator: In
                   values:
-                    - production
+                    - development
     ## The priority class to run the pod as
     priorityClassName:
     # containers to be run before the controller's container starts.
@@ -1048,7 +1048,7 @@ redis:
                 - key: workload
                   operator: In
                   values:
-                    - production
+                    - development
     ## The priority class to run the pod as
     priorityClassName:
     # containers to be run before the controller's container starts.
@@ -1122,7 +1122,7 @@ exporter:
               - key: workload
                 operator: In
                 values:
-                  - production
+                  - development
   # Spread Pods across failure-domains like regions, availability zones or nodes
   topologySpreadConstraints: []
   ## The priority class to run the pod as

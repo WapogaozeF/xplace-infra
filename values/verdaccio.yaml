@@ -40,7 +40,7 @@ affinity:
             - key: workload
               operator: In
               values:
-                - production
+                - development
 
 ## Tolerations for nodes
 tolerations: []
