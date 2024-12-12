@@ -6,18 +6,11 @@ metadata:
   namespace: minio
 spec:
   hosts:
-    - "s3.xplaceinmyheart.ru"
+    - "s3.xplaceinmyheart.test"
   gateways:
     - minio
   http:
-    - match:
-        - port: 80
-      redirect:
-        scheme: https
-        port: 443
-    - match:
-        - port: 443
-      route:
+    - route:
         - destination:
             host: minio
             port:
@@ -30,7 +23,7 @@ metadata:
   namespace: minio
 spec:
   hosts:
-    - "s3ui.xplaceinmyheart.ru"
+    - "s3ui.xplaceinmyheart.test"
   gateways:
     - minio
   http:
