@@ -12,8 +12,8 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "s3.xplaceinmyheart.test"
-        - "s3ui.xplaceinmyheart.test"
+        - "s3.xplaceinmyheart.ru"
+        - "s3ui.xplaceinmyheart.ru"
       tls:
         httpsRedirect: true
     - port:
@@ -21,8 +21,8 @@ spec:
         name: https
         protocol: HTTPS
       hosts:
-        - "s3.xplaceinmyheart.test"
-        - "s3ui.xplaceinmyheart.test"
+        - "s3.xplaceinmyheart.ru"
+        - "s3ui.xplaceinmyheart.ru"
       tls:
         mode: SIMPLE
         credentialName: xplaceinmyheart-ru-tls
