@@ -16,12 +16,12 @@ master:
                 values:
                   - development
 
-# tls:
-#   enabled: true
-#   existingSecret: redis-root
-#   certFilename: tls.crt
-#   certKeyFilename: tls.key
-#   certCAFilename: ca.crt
+tls:
+  enabled: true
+  existingSecret: redis-root
+  certFilename: tls.crt
+  certKeyFilename: tls.key
+  certCAFilename: ca.crt
 
 architecture: standalone
 
