@@ -3,7 +3,7 @@ kind: RunnerDeployment
 metadata:
   name: food-to-go
 spec:
-  replicas: 1
+  replicas: 4
   template:
     spec:
       repository: astra-studio/food-to-go
@@ -16,3 +16,10 @@ spec:
                     operator: In
                     values:
                       - development
+      resources:
+        limits:
+          cpu: "2"
+          memory: "4Gi"
+        requests:
+          cpu: "1"
+          memory: "2Gi"
