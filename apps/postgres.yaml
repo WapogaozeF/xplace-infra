@@ -1,38 +1,38 @@
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: postgres
-  namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "5"
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  sources:
-    - repoURL: registry-1.docker.io/bitnamicharts
-      chart: postgresql
-      targetRevision: 16.2.1
-      helm:
-        valueFiles:
-          - $values/values/postgres.yaml
-    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
-      ref: values
-      targetRevision: HEAD
-    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
-      path: manifests/postgres
-      targetRevision: HEAD
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: postgres-development
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-      allowEmpty: false
-    syncOptions:
-      - Validate=true
-      - CreateNamespace=true
-      - PrunePropagationPolicy=foreground
-      - PruneLast=true
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: postgres
+#   namespace: argocd
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "5"
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   sources:
+#     - repoURL: registry-1.docker.io/bitnamicharts
+#       chart: postgresql
+#       targetRevision: 16.2.1
+#       helm:
+#         valueFiles:
+#           - $values/values/postgres.yaml
+#     - repoURL: https://github.com/WapogaozeF/xplace-infra.git
+#       ref: values
+#       targetRevision: HEAD
+#     - repoURL: https://github.com/WapogaozeF/xplace-infra.git
+#       path: manifests/postgres
+#       targetRevision: HEAD
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: postgres-development
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#       allowEmpty: false
+#     syncOptions:
+#       - Validate=true
+#       - CreateNamespace=true
+#       - PrunePropagationPolicy=foreground
+#       - PruneLast=true
