@@ -44,3 +44,6 @@ spec:
       jsonPointers:
         - /data
         - /metadata/labels
+    - kind: PersistentVolumeClaim
+      jsonPointers:
+        - /spec/resources/requests/storage
