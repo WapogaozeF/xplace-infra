@@ -40,6 +40,8 @@ data:
     # a list of other known repositories we can talk to
     uplinks:
       npmjs:
+        maxage: 10m
+        cache: true
         url: https://registry.npmjs.org/
         agent_options:
           keepAlive: true
