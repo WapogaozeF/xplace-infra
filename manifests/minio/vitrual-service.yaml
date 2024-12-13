@@ -27,6 +27,14 @@ spec:
   gateways:
     - minio
   http:
+    - match:
+        - uri:
+            prefix: "/ws/objectManager"
+      route:
+        - destination:
+            host: minio
+            port:
+              number: 9001
     - route:
         - destination:
             host: minio
