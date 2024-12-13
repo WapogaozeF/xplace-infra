@@ -2,8 +2,11 @@ auth:
   existingSecret: "minio-secret"
 
 service:
-  type: ClusterIP
-
+  type: NodePort
+  nodePorts:
+    api: "31111"
+    console: "31112"
+    
 resources:
   requests:
     cpu: 1
