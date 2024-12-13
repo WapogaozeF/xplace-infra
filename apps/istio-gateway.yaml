@@ -20,6 +20,12 @@ spec:
     - repoURL: https://istio-release.storage.googleapis.com/charts
       chart: gateway
       targetRevision: 1.24.1
+      helm:
+        valueFiles:
+          - $values/values/istio-gateway.yaml
+    - repoURL: https://github.com/WapogaozeF/xplace-infra.git
+      ref: values
+      targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-ingress
