@@ -20,7 +20,7 @@ affinity:
             - key: workload
               operator: In
               values:
-                - production
+                - development
 
 metrics:
   enabled: true
