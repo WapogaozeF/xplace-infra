@@ -44,6 +44,8 @@ spec:
       jsonPointers:
         - /data
         - /metadata/labels
-    - kind: PersistentVolumeClaim
+    - group: ""
+      kind: PersistentVolumeClaim
+      namespace: npm
       jsonPointers:
         - /spec/resources/requests/storage
