@@ -3,7 +3,7 @@ kind: RunnerDeployment
 metadata:
   name: foodtogo-npm
 spec:
-  replicas: 1
+  replicas: 4
   template:
     spec:
       repository: astra-studio/foodtogo-npm
