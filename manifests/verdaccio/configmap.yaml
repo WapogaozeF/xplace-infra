@@ -38,15 +38,13 @@ data:
         rounds: 10
 
     # a list of other known repositories we can talk to
-    #uplinks:
-    #  npmjs:
-    #    maxage: 10m
-    #    cache: true
-     #   url: https://registry.npmjs.org/
-     #   agent_options:
-     #     keepAlive: true
-     #     maxSockets: 40
-      #    maxFreeSockets: 10
+    uplinks:
+      npmjs:
+        url: https://registry.npmjs.org/
+        agent_options:
+          keepAlive: true
+          maxSockets: 40
+          maxFreeSockets: 10
 
     server:
       keepAliveTimeout: 60
