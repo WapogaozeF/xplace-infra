@@ -1,14 +1,14 @@
-apiVersion: actions.summerwind.dev/v1alpha1
-kind: HorizontalRunnerAutoscaler
-metadata:
-  name: example-runner-deployment-autoscaler
-spec:
-  scaleTargetRef:
-    kind: RunnerDeployment
-    # # In case the scale target is RunnerSet:
-    # kind: RunnerSet
-    name: food-to-go
-  minReplicas: 1
-  maxReplicas: 8
-  # Your chosen scaling metrics here
-  metrics: []
+# apiVersion: actions.summerwind.dev/v1alpha1
+# kind: HorizontalRunnerAutoscaler
+# metadata:
+#   name: example-runner-deployment-autoscaler
+# spec:
+#   scaleTargetRef:
+#     kind: RunnerDeployment
+#     # # In case the scale target is RunnerSet:
+#     # kind: RunnerSet
+#     name: food-to-go
+#   minReplicas: 1
+#   maxReplicas: 8
+#   # Your chosen scaling metrics here
+#   metrics: []
